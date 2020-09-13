@@ -1,0 +1,37 @@
+<div class="col-sm-9">
+  <% if @job_applications.empty? %>
+    <h1>You dont have any applications.</h1>
+  <% else %>
+    <div class="panel panel-default">
+      <div class="panel-heading"><h1>Applications</h1></div>
+      <div class="panel-body">
+        <% @job_applications.each do |application| %>
+          <% if current_user.admin? %>
+            <li><%= link_to application.job.title, job(application.job)%> <small>Applied on <%= application.created_at%></small></li>
+          <% else %>
+            <li><%= link_to application.job.title, user_job_application_path(current_user, application)%> <small>Applied on <%= application.posting_date%></small></li>
+          <% end %>
+          <%= fa_icon 'industry' %> <%= application.job.company%> | <%= application.job.category.name %>
+          <% if current_user.admin? %>
+            <li>Applicant: <%= application.applicant.email %></li>
+          <% end %>
+          <br></br>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate @job_applications %>
+</div> <!-- end col-sm-6 -->
+
+<div class="col-sm-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">Latest Jobs</div>
+    <div class="panel-body">
+      <% @latest_jobs.each do |job| %>
+        <small><%= job.location%></small> | <small><%= job.posting_date %></small>
+        <h5><%= link_to job.title, job_path(job) %></h5>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div><!-- end col-sm-3 -->

@@ -2,7 +2,17 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
+gem 'figaro'  #Keeps you API keys secure
+gem 'pundit' #Authorization
+gem "twitter-bootstrap-rails" #Bootstrap
+gem 'bootstrap_form' #Bootstrap Forms
+gem "font-awesome-rails" #Icons
+gem 'omniauth-facebook' #Facebook Login
 
+gem 'binding_of_caller'
+gem 'simple_form'
+gem 'kaminari'
+gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 # Use sqlite3 as the database for Active Record
@@ -52,3 +62,11 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'bulma-rails'
+gem 'sidekiq'
+group :development, :test do
+  gem 'better_errors'
+  gem 'guard'
+  gem 'guard-livereload'
+end
