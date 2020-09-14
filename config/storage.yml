@@ -6,6 +6,8 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
+#I have created an S3 storage on aws along with a user, And used the key_id with the password
+  #and the bucket storage to implement the task and try it with some test cases.
  Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
  amazon:
    service: S3

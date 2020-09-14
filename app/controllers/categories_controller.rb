@@ -7,12 +7,10 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
-    authorize @category
   end
 
   def create
     @category = Category.new()
-    authorize @category
     if @category.save
       redirect_to categories_path, alert: "Category #{@category.name} has been created"
     else
@@ -21,14 +19,12 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    authorize @category
     respond_to do |format|
       format.html {render :show }
     end
   end
 
   def edit
-    authorize @category
   end
 
   def update
@@ -37,7 +33,6 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    authorize @category
     @category.destroy
     redirect_to root_path, alert: "Category #{@category.name} has been deleted"
   end
