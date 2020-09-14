@@ -2,7 +2,9 @@
 
   <%= f.hidden_field :user_id, :value => params[:user_id] %>
   <%= f.hidden_field :job_id, :value => params[:job_id] %>
-
+  <%= f.file_field :resume, :value => params[:resume] %>
+  <%#= f.label :resume %>
+  <%#= f.file_field :resume %>
 
   <div class="row">
     <%= f.submit "Send Application", class: "btn btn-primary btn-outline btn-sm pull-right" %>

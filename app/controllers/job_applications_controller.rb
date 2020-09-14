@@ -3,9 +3,9 @@ class JobApplicationsController < ApplicationController
 
     def index
       if params[:user_id] || current_user.user?
-        @job_applications = current_user.job_applications.order_and_paginated(params[:page], @items_per_page)
+        @job_applications = current_user.job_applications
       elsif current_user.admin?
-        @job_applications = JobApplication.order_and_paginated(params[:page], @items_per_page)
+        @job_applications = JobApplication.all
       end
     end
 
@@ -19,7 +19,7 @@ class JobApplicationsController < ApplicationController
       if !@job_application.nil?
         redirect_to root_path, alert: "You already applied for this job."
       else
-        @job_application = JobApplication.new()
+        @job_application = JobApplication.new(job_application_params)
         # authorize @job_application
         if @job_application.save
           redirect_to root_path, alert: "Your application has been sent. Good Luck!"
@@ -54,7 +54,7 @@ class JobApplicationsController < ApplicationController
 
 
     def job_application_params
-      params.require(:job_application).permit(:user_id, :job_id)
+      params.require(:job_application).permit(:user_id, :job_id, :resume)
     end
 
     def job_applications_update_params

@@ -8,6 +8,8 @@
     <h4>Description:</h4>
     <p><%= @job_application.job.description %></p>
     <h5>Company Url: <%= link_to @job_application.job.url, "http://#{@job_application.job.url}" %></h5>
+    <p><%= @job_application.job.resume %></p>
+    <h5>Company Url: <%= link_to @job_application.resume, @job_application.resume %></h5>
 
   </div>
   <%= link_to "Back", 'javascript:history.go(-1);', class: "btn btn-primary btn-outline btn-sm" %>

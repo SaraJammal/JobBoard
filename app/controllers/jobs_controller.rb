@@ -28,7 +28,7 @@ class JobsController < ApplicationController
 
   def create
     # if current_user.isAdmin
-      @job = Job.new
+      @job = Job.new(job_params)
       @job.user = current_user
       if @job.save
         redirect_to @job, alert: "Job offer succesfully created"

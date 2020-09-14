@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :jobs, :foreign_key => 'company_id', :dependent => :destroy
   has_many :job_applications, :foreign_key => 'user_id'
 
+
   def set_default_role
     self.role ||= :user
   end
