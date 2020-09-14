@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.5.1'# Elasticsearch integration
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
+
 gem'aws-sdk-s3', require: false
 gem 'active_model_serializers'
 gem 'figaro'  #Keeps you API keys secure
@@ -60,6 +64,11 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+
+  # Clean Database between tests
+  gem 'database_cleaner'
+  # Programmatically start and stop ES for tests
+  gem 'elasticsearch-extensions'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -68,6 +77,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bulma-rails'
 gem 'sidekiq'
 group :development, :test do
+  gem 'rspec'
+  gem 'rspec-rails'
   gem 'better_errors'
   gem 'guard'
   gem 'guard-livereload'
