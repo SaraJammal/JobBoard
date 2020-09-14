@@ -20,12 +20,12 @@ class JobApplicationsController < ApplicationController
         redirect_to root_path, alert: "You already applied for this job."
       else
         @job_application = JobApplication.new()
-        authorize @job_application
+        # authorize @job_application
         if @job_application.save
           redirect_to root_path, alert: "Your application has been sent. Good Luck!"
           # render json: @job_applcation, status: :created
         else
-          render_to new_job_application_path, alert: "Oops, there was a problem, please try again"
+          render new_job_application_path , alert: "Oops, there was a problem, please try again"
           # render json: @job_applcation.errors, status: :unprocessable_entity
         end
       end

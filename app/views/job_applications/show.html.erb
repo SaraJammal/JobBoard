@@ -1,0 +1,15 @@
+<div class="col-sm-9">
+  <div class="well">
+    <h1><%= @job_application.job.title %></h1>
+    <small>Posted: <%= @job_application.job.created_at %></small>
+    <h4><span class="label label-default"><%= @job_application.job.category.name %></span></h4>
+    <h3>Company:</h3>
+    <p><%= fa_icon "industry" %> <%= @job_application.job.company%></p>
+    <h4>Description:</h4>
+    <p><%= @job_application.job.description %></p>
+    <h5>Company Url: <%= link_to @job_application.job.url, "http://#{@job_application.job.url}" %></h5>
+
+  </div>
+  <%= link_to "Back", 'javascript:history.go(-1);', class: "btn btn-primary btn-outline btn-sm" %>
+</div>
+

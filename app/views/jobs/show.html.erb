@@ -1,18 +1,64 @@
 
-<p>
-  <strong>Title:</strong>
-  <%= @job.title %>
-</p>
+<!--<p>-->
+<!--  <strong>Title:</strong>-->
+  <%#= @job.title %>
+<!--</p>-->
 
-<p>
-  <strong>Description:</strong>
-  <%= @job.description %>
-</p>
-<% if user_signed_in? %>
-     <p> <button onclick= "" > Apply for this position </button> </p>
-<%end %>
-<% if current_user.isAdmin? %>
+<!--<p>-->
+<!--  <strong>Description:</strong>-->
+  <%#= @job.description %>
+<!--</p>-->
+<%# if user_signed_in? %>
+<!--     <p> <button onclick= "" > Apply for this position </button> </p>-->
+<%#end %>
+<%# if current_user.isAdmin? %>
 
-<%= link_to 'Edit', edit_job_path(@job) %>
-  <%end %>
-<%= link_to 'Back', jobs_path %>
+<%#= link_to 'Edit', edit_job_path(@job) %>
+  <%#end %>
+<%#= link_to 'Back', jobs_path %>
+
+<div class="row">
+
+  <div class="col-sm-9">
+    <div class="well">
+      <h1><%= @job.title %></h1>
+      <small>Posted: <%= @job.created_at %></small>
+      <h3>Company:</h3>
+      <p><%= fa_icon "industry" %> <%= @job.company %></p>
+      <h4>Description:</h4>
+      <p><%= @job.description %></p>
+      <h5>Company Url: <%= link_to @job.url, "http://#{@job.url}" %></h5>
+
+
+
+      <div class="row">
+        <% if current_user.user? %>
+          <div class="col-sm-2 pull-right">
+            <%= link_to "Apply", new_job_application_path(job_id: @job.id, user_id: current_user), class: "btn btn-primary btn-outline btn-md" %>
+          </div>
+        <% elsif policy(@job).update? %>
+          <div class="col-sm-2 pull-right">
+            <%= button_to "Edit", edit_job_path, method: "get", class: "btn btn-warning btn-outline btn-md" %>
+          </div>
+          <div class="col-sm-2 pull-right">
+            <%= button_to "Delete", job_path, method: "delete", class: "btn btn-danger btn-outline btn-md" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= button_to "Back", jobs_path, method: "get", class: "btn btn-primary btn-outline btn-sm" %>
+  </div>
+
+<!--  <div class="col-sm-3">-->
+<!--    <div class="panel panel-default">-->
+<!--      <div class="panel-heading">Latest Jobs</div>-->
+<!--      <div class="panel-body">-->
+        <%# @jobs.each do |job| %>
+<!--          <small><%#= job.location%></small> | <small><%#= job.created_at %></small>-->
+<!--          <h5><%#= link_to job.title, job_path(job) %></h5>-->
+        <%# end %>
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+</div>

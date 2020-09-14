@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 root 'jobs#index'
 resources :jobs
+resources :job_applications
+resources :categories
 devise_for :users
 
 # root to: 'pages#home'
