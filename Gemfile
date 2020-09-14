@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
+gem 'active_model_serializers'
 gem 'figaro'  #Keeps you API keys secure
 gem 'pundit' #Authorization
 gem "twitter-bootstrap-rails" #Bootstrap
