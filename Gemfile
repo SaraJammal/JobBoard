@@ -77,8 +77,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bulma-rails'
 gem 'sidekiq'
 group :development, :test do
+  gem 'rspec-rails', ">= 3.9.0"
   gem 'rspec'
-  gem 'rspec-rails'
+  # gem 'rspec-rails'
   gem 'better_errors'
   gem 'guard'
   gem 'guard-livereload'

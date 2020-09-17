@@ -17,7 +17,7 @@ class Job < ApplicationRecord
   has_many :job_applications, :dependent => :destroy
   has_many :applicants, :through => :job_applications, :class_name => 'User'
 
-  JOB_TYPES = %w[Full-time Part-time Contract Freelance]
+  JOB_TYPES = %w[Full-time Part-time Freelance]
 
   def self.by_category(category_id)
     where(category: category_id)
