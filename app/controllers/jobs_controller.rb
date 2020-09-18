@@ -8,6 +8,7 @@ class JobsController < ApplicationController
 
   def index
     @jobs = Job.all.order("created_at DESC")
+    # @jobs = Job.view_premissions(current_user)
     # render json: @jobs
     #
     # @Jobs = Job.where(nil)

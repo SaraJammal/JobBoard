@@ -77,8 +77,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bulma-rails'
 gem 'sidekiq'
 group :development, :test do
+  gem 'rails-controller-testing'
   gem 'rspec-rails', ">= 3.9.0"
   gem 'rspec'
+  # gem 'capybara'
+
   # gem 'rspec-rails'
   gem 'better_errors'
   gem 'guard'

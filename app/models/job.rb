@@ -22,4 +22,12 @@ class Job < ApplicationRecord
   def self.by_category(category_id)
     where(category: category_id)
   end
+
+
+
+
+  #To be make only the admin delete/update the job
+  def self.view_premissions(current_user)
+    current_user.isAdmin? ? Job.all : current_user.Job
+  end
 end

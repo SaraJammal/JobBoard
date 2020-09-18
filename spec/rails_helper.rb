@@ -62,3 +62,22 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+describe "GET jobs#show" do
+  it "should render jobs#show template" do
+  end
+end
+describe "GET jobs#new" do
+  it "should render jobs#new template" do
+  end
+end
+describe "POST jobs#create" do
+  context "with valid attributes" do
+    it "should save the new job in the database"
+    it "should redirect to the jobs#index page"
+  end
+  context "with invalid attributes" do
+    it "should not save the new job in the database"
+    it "should render jobs#new template"
+  end
+end
