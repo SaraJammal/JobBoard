@@ -9,12 +9,12 @@ class JobsController < ApplicationController
   def index
     @jobs = Job.all.order("created_at DESC")
     # @jobs = Job.view_premissions(current_user)
-    # render json: @jobs
-    #
-    # @Jobs = Job.where(nil)
-    # filtering(params).each do |key, value|
-    #   @Jobs = @Jobs.public_send("filter_by_#{key}", value) if value.present?
-    # end
+    render json: @jobs
+
+    @Jobs = Job.where(nil)
+    filtering(params).each do |key, value|
+      @Jobs = @Jobs.public_send("filter_by_#{key}", value) if value.present?
+    end
   end
 
   # GET /jobs/1
@@ -32,11 +32,11 @@ class JobsController < ApplicationController
       @job = Job.new(job_params)
       @job.user = current_user
       if @job.save
+        render json: @job, status: :created, location: @job
         redirect_to @job, alert: "Job offer succesfully created"
-        # render json: @job, status: :created, location: @job
       else
+        render json: @job.errors, status: :unprocessable_entity
         render new_job_path, alert: "Job was not created"
-        # render json: @job.errors, status: :unprocessable_entity
       end
     # end
   end
@@ -48,16 +48,16 @@ class JobsController < ApplicationController
   def update
     authorize @job
     @job.update(job_params)
+    render json: @job, status: :ok, location: @job
     redirect_to @job, alert: "Job offer succesfully updated"
-    # render json: @job, status: :ok, location: @job
   end
 
   # DELETE /jobs/1
   # DELETE /jobs/1.json
   def destroy
     @job.destroy
+    format.json { head :no_content }
     redirect_to root_path, alert: "Job offer successfully deleted"
-    #      format.json { head :no_content }
   end
 
   private

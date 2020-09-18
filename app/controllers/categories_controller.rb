@@ -3,6 +3,8 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
+    render json: @categories
+
   end
 
   def new
@@ -12,8 +14,10 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new()
     if @category.save
+      render json: @category, status: :created, location: @category
       redirect_to categories_path, alert: "Category #{@category.name} has been created"
     else
+      render json: @category.errors, status: :unprocessable_entity
       render new_category_path
     end
   end
@@ -29,11 +33,13 @@ class CategoriesController < ApplicationController
 
   def update
     @category.update(category_params)
+    render json: @category, status: :ok, location: @category
     redirect_to category_path, alert: "This category has been updated"
   end
 
   def destroy
     @category.destroy
+    format.json { head :no_content }
     redirect_to root_path, alert: "Category #{@category.name} has been deleted"
   end
 
